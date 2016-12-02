@@ -3,81 +3,91 @@ distros = list(
                     name='Beta',
                     code='beta',
                     params=2,
-
+                    type='continuous'
                     ),
                list(
                     name='Binomial',
                     code='binom',
-                    params=2
+                    params=2,
+                    type='discrete'
                     ),
                list(
                     name='Cauchy',
                     code='cauchy',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Exponential',
                     code='exp',
-                    params=1
+                    params=1,
+                    type='continuous'
                     ),
                list(
                     name='F distribution',
                     code='f',
-                    params=2
-                    ),
-               list(
-                    name='F distribution',
-                    code='f',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Gamma',
                     code='gamma',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Geometric',
-                    code='gamma',
-                    params=1
+                    code='geom',
+                    params=1,
+                    type='discrete'
                     ),
                list(
                     name='Hypergeometric',
                     code='hyper',
-                    params=3
+                    params=3,
+                    type='discrete'
+
                     ),
                list(
                     name='Log-normal',
                     code='lnorm',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Negative binomial',
                     code='nbinom',
-                    params=2
+                    params=2,
+                    type='discrete'
                     ),
                list(
                     name='Normal',
                     code='norm',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Poisson',
                     code='pois',
-                    params=1
+                    params=1,
+                    type='discrete'
                     ),
                list(
                     name='t-distribution',
                     code='t',
-                    params=1
+                    params=1,
+                    type='continuous'
                     ),
                list(
                     name='Uniform',
                     code='unif',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                list(
                     name='Weibull',
                     code='weibull',
-                    params=2
+                    params=2,
+                    type='continuous'
                     ),
                )
