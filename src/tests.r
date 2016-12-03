@@ -74,5 +74,5 @@ tests <- list(
                        test <- do.call('cvm.test', args)
                        return(test$p.value)
                    }
-                  ),
+                  )
              )
