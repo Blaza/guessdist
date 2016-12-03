@@ -91,3 +91,23 @@ distros = list(
                     type='continuous'
                     )
                )
+
+# function to get distro object, given code
+get.distro <- function(code) {
+    # find distros with given code
+    matched.dist <- Filter(function(d){d$code == code}, distros)
+    # only one distro will be matched, so get the first element of the filtered
+    # list or NULL if no match is found
+    if(length(matched.dist) != 0) {
+        result <- matched.dist[[1]]
+    } else {
+        result <- NULL
+    }
+    return(result)
+}
+
+# function to get full distribution name from the code (wrapper for get.distro)
+get.distro.name <- function(code) {
+    distro <- get.distro(code)
+    return( ifelse( is.null(distro), '', distro$name ) )
+}
