@@ -31,6 +31,11 @@ tests <- list(
                             version of the test, but for a limited number of
                             distributions.',
                    pval=function(fit){
+                       pdf.name <- paste('p', fit$distname, sep='')
+                       args <- append(list(fit$data, pdf.name),
+                                      as.list(fit$estimate))
+                       test <- do.call('ks.test', args)
+                       return(test$p.value)
                    }
                   ),
               list(
@@ -41,6 +46,9 @@ tests <- list(
                             to normal, log-normal, uniform, exponential, gamma
                             and Weibull distributions.',
                    pval=function(fit){
+                       pdf.name <- paste('p', fit$distname, sep='')
+                       test <- LcKS(fit$data, pdf.name, nreps=4999)
+                       return(test$p.value)
                    }
                   ),
               list(
@@ -77,6 +85,7 @@ tests <- list(
                   )
              )
 
+# function to get test object, given code
 get.test <- function(code) {
     # find tests with given code
     matched.test <- Filter(function(t){t$code == code}, tests)
