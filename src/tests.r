@@ -47,7 +47,9 @@ tests <- list(
                             and Weibull distributions.',
                    pval=function(fit){
                        pdf.name <- paste('p', fit$distname, sep='')
-                       test <- LcKS(fit$data, pdf.name, nreps=4999)
+                       cat('Running Lilliefors-corrected K-S test for ',
+                           fit$distname, '. This can take some time.\n', sep='')
+                       test <- LcKS(fit$data, pdf.name, nreps=3999)
                        return(test$p.value)
                    }
                   ),
