@@ -58,14 +58,59 @@ process.distro <- function(smp, distro, t.codes) {
                        })
     result <- c(result, p.values)
 
+    # return the result with nice column names and the fitted fitdist object
+    return(list('result'=result, 'fitobj'=fit))
+}
+
+# The main function which will fit data smp to selected distributions and use
+# selected tests to calculate p values.
+# Returns a list with a dataframe containing a table with results and a string
+# containing the approximate guess for the best fit distribution.
+fit.data <- function(smp, d.codes, t.codes, plots=FALSE) {
+    # the filter we use to get distros which were chosen.
+    flt <- function(d) {
+        return(d$code %in% d.codes)
+    }
+    # get distro objects which correspond to d.codes selected distros
+    chosen.distros <- Filter(flt, distros)
+
+    # process every chosen distro and get results as a list
+    results.list <- lapply(chosen.distros,
+                           function(d) {
+                               return(process.distro(smp, d, t.codes))
+                           })
+
+    # if plots is TRUE, plot the results
+    if(plots){
+        for(res in results.list){
+            par(mar=c(5.1,4.1,8.1,2.1))
+            plot(res$fitobj)
+            title(res$result[1], outer=TRUE, line=-2)
+        }
+    }
+
+    # get the vector containing the result component for each chosen distro
+    results <- sapply(results.list, function(r){r$result})
+
+    # and put it in a dataframe. We take the transpose so we get results
+    # displayed by row, i.e. in the form:
+    # distribution 1 | estimates | ....
+    # distribution 2 | estimates | ....
+    dframe=as.data.frame(t(results))
+
     # we create the vector of column names for the returned vector. We start
     # with known values then add the test names which we get with the
     # get.test.name function from the tests.r  file
     col.names <- c('Distribution', 'MLEs', 'AIC', 'BIC')
     test.names <- sapply(t.codes, get.test.name)
     col.names <- c(col.names, test.names)
-    names(result) <- col.names
+    colnames(dframe) <- col.names
 
-    # return the result with nice column names and the fitted fitdist object
-    return(list('result'=result, 'fitobj'=fit))
+    guess <- get.distro.name('gamma')
+
+    # we return the dataframe which should be displayed as a final result and
+    # the guess concluded by the analysis.
+    return(list('table'=dframe,
+                'guess'=paste('Our guess is', guess, 'with parameters:')))
 }
+
