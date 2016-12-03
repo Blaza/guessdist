@@ -76,3 +76,17 @@ tests <- list(
                    }
                   )
              )
+
+# function to get full test name from test code
+get.test.name <- function(code) {
+    # find tests with given code
+    matched.test <- Filter(function(t){t$code == code}, tests)
+    # only one test will be matched, so get the first element of the filtered
+    # list or empty string if no match is found
+    if(length(matched.test) != 0) {
+        result <- matched.test[[1]]$name
+    } else {
+        result <- ''
+    }
+    return(result)
+}
