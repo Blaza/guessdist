@@ -16,7 +16,7 @@ tests <- list(
                    code='chisq',
                    distros=c('discrete','continuous'),
                    warning='',
-                   fun=function(fit){
+                   pval=function(fit){
                        gof <- gofstat(fit)
                        return(gof$chisqpvalue)
                    }
@@ -30,7 +30,7 @@ tests <- list(
                             possible to correct using the Lilliefors-Corrected
                             version of the test, but for a limited number of
                             distributions.',
-                   fun=function(fit){
+                   pval=function(fit){
                    }
                   ),
               list(
@@ -40,7 +40,7 @@ tests <- list(
                    warning='Lilliefors-Corrected K-S test can only be applied
                             to normal, log-normal, uniform, exponential, gamma
                             and Weibull distributions.',
-                   fun=function(fit){
+                   pval=function(fit){
                    }
                   ),
               list(
@@ -51,7 +51,7 @@ tests <- list(
                             as the parameters are estimated. For a limited
                             number of distributions, Lilliefors-Corrected
                             Kolmogorov-Smirnov test may give better results.',
-                   fun=function(fit){
+                   pval=function(fit){
                        pdf.name <- paste('p', fit$distname, sep='')
                        args <- append(list(fit$data, pdf.name),
                                       as.list(fit$estimate))
@@ -67,7 +67,7 @@ tests <- list(
                             as the parameters are estimated. For a limited
                             number of distributions, Lilliefors-Corrected
                             Kolmogorov-Smirnov test may give better results.',
-                   fun=function(fit){
+                   pval=function(fit){
                        pdf.name <- paste('p', fit$distname, sep='')
                        args <- append(list(fit$data, pdf.name),
                                       as.list(fit$estimate))
