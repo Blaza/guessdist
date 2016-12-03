@@ -89,5 +89,5 @@ distros = list(
                     code='weibull',
                     params=2,
                     type='continuous'
-                    ),
+                    )
                )
