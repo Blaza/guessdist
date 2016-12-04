@@ -1,0 +1,10 @@
+Name: GUESS DIST
+Command-Specs: GUESS_DIST.xml
+Code-Files: distros.r,GUESS_DIST.R,guessdist.r,tests.r,warn.r
+Summary: Guess the distribution of variable
+Description: Make a guess about the distribution of selected variable
+Author: Blagoje Ivanovic
+Version: 0.8.216
+Product-Version: 21
+Plugins: R
+R-Packages: MASS,survival,fitdistrplus,KScorrect,goftest
