@@ -8,13 +8,13 @@ guess.dist <- function(variable, d.codes, t.codes, crit, plots=FALSE) {
     smp.df <- spssdata.GetDataFromSPSS(variables=c(variable),
                                        missingValueToNA=TRUE)
     # get first column of the dataframe, basicaly turning dataframe to vector
-    smp <-smp.df[,1]
+    smp <- smp.df[,1]
 
     return(fit.data(smp, unlist(d.codes), unlist(t.codes), crit, plots))
 }
 
 Run <- function(args){
-    cmdname = args[[1]]
+    cmdname <- args[[1]]
     args <- args[[2]]
     oobj <- spsspkg.Syntax(templ=list(
                 spsspkg.Template("VARIABLE", subc="",  ktype="existingvarlist", var="variable", islist=FALSE),
@@ -36,6 +36,19 @@ Run <- function(args){
 
     spss.TextBlock("Distribution guess:",
                    res$guess)
+
+    # Add warnings table
+    table <- spss.BasePivotTable("Warnings ","Warnings")
+    rowdim <- BasePivotTable.Append(table,Dimension.Place.row,"rowdim",
+                                    hideName=TRUE,hideLabels=TRUE)
+    warnings <- Warner$getWarnings()
+    if(length(warnings != 0)) {
+        for(i in 1:length(warnings)) {
+            cat <- spss.CellText.String(as.character(i))
+            BasePivotTable.SetCategories(table,rowdim,cat)
+            BasePivotTable.SetCellValue(table,cat,warnings[i])
+        }
+    }
 
     spsspkg.EndProcedure()
 }
