@@ -17,7 +17,7 @@ Run <- function(args){
     cmdname = args[[1]]
     args <- args[[2]]
     oobj <- spsspkg.Syntax(templ=list(
-                spsspkg.Template("VARIABLE", subc="",  ktype="existingvar", var="variable", islist=FALSE),
+                spsspkg.Template("VARIABLE", subc="",  ktype="existingvarlist", var="variable", islist=FALSE),
                 spsspkg.Template("DISTRIBUTION", subc="",  ktype="str", var="d.codes", islist=TRUE),
                 spsspkg.Template("TEST", subc="",  ktype="str", var="t.codes", islist=TRUE),
                 spsspkg.Template("CHOOSEBY", subc="",  ktype="str", var="crit", islist=FALSE),
