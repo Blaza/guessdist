@@ -114,7 +114,7 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     # displayed by row, i.e. in the form:
     # distribution 1 | estimates | ....
     # distribution 2 | estimates | ....
-    dframe=as.data.frame(t(results))
+    dframe <- as.data.frame(t(results), stringsAsFactors=FALSE)
 
     # we create the vector of column names for the returned vector. We start
     # with known values then add the test names which we get with the
@@ -127,7 +127,7 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     # get test object corresponding to criterion crit
     crit.obj <- get.test(crit)
     # get the index of the best guess using the crit$best function
-    guess.index <- crit.obj$best(dframe[[crit.obj$name]])
+    guess.index <- crit.obj$best(as.numeric(dframe[[crit.obj$name]]))
     # get the row associated with that guess
     guess.row <- dframe[guess.index, ]
     # guessed distribution name
