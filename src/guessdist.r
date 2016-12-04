@@ -36,7 +36,7 @@ process.distro <- function(smp, distro, t.codes) {
     # par1.name: est1.value
     # par2.name: est2.value
     mle.string <- paste( sapply(1:length(mles), function(i){
-                                    paste(names(mles)[i], mles[i], sep=': ')
+                                    sprintf("%s: %.3f", names(mles)[i], mles[i])
                                 }),
                          collapse='\n' )
 
