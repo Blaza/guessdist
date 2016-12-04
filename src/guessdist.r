@@ -28,7 +28,22 @@ process.distro <- function(smp, distro, t.codes) {
     result <- c(distro$name)
 
     # get fitdist object which has estimates and is used for tests
-    fit <- fitdist(smp, distro$code, method='mle')
+    # if there is an error during fitting (e.g. forbidden values) return a
+    # vector containing only NAs.
+    fit <- tryCatch({
+        fitdist(smp, distro$code, method='mle')
+    }, warning=function(w) {
+        print(paste("WARNING at fitting", distro$code, ":", war))
+        return(NULL)
+    }, error=function(e) {
+        # use <<- operator because we are assigning to one level up environment
+        result <<- c(result, rep(NA, length(t.codes) + 1))
+        return(NULL)
+    })
+
+    if(is.null(fit)) {
+        return(list('result'=result, 'fitobj'=NULL))
+    }
 
     # get the MLEs
     mles <- fit$estimate
