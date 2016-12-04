@@ -87,6 +87,9 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     # get distro objects which correspond to d.codes selected distros
     chosen.distros <- Filter(flt, distros)
 
+    # ensure that crit is calculated (unite t.codes and crit)
+    t.codes <- unique(c(t.codes, crit))
+
     # process every chosen distro and get results as a list
     results.list <- lapply(chosen.distros,
                            function(d) {
