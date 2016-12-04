@@ -3,6 +3,7 @@ library(fitdistrplus)
 script.dir <- dirname(sys.frame(1)$ofile)
 source(paste(script.dir, 'distros.r', sep='/'))
 source(paste(script.dir, 'tests.r', sep='/'))
+source(paste(script.dir, 'warn.r', sep='/'))
 
 # function to process one distribution, i.e. generate MLEs afrom the sample smp
 # and run tests from 'tests' which support the current distro. It takes the
@@ -61,6 +62,7 @@ process.distro <- function(smp, distro, t.codes) {
                        function(code) {
                            if(code %in% allowed.t.codes){
                                test <- get.test(code)
+                               Warner$warn(test$warning)
                                return(test$pval(fit))
                            } else {
                                return(NA)
@@ -89,6 +91,21 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
 
     # ensure that crit is calculated (unite t.codes and crit)
     t.codes <- unique(c(t.codes, crit))
+
+    # Add a warnings that this method is to be taken with caution
+    Warner$warn("Given guess is only an approximate guess of the distribution
+                 which may be used to model given data. It should not
+                 be considered to give a definitive answer to the real
+                 distribution of provided data. Determining the exact
+                 distribution from which data came from is an impossible task.")
+
+    Warner$warn("We make a guess automatically by considering the selected
+                 benchmark test. There is value in checking the summary table
+                 and provided plots to alse take a manual guess yourself, as
+                 there might be a simpler or better model than the provided
+                 guess. For example, Gamma distribution can be guessed over
+                 Exponential as it is more general and has more parameters,
+                 when the data actually came from Exponential distribution.")
 
     # process every chosen distro and get results as a list
     results.list <- lapply(chosen.distros,
