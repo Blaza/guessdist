@@ -42,7 +42,7 @@ Run <- function(args){
     if(length(warnings != 0)) {
         table <- spss.BasePivotTable("Warnings ","Warnings")
         rowdim <- BasePivotTable.Append(table,Dimension.Place.row,"rowdim",
-                                        hideName=TRUE,hideLabels=TRUE)
+                                        hideName=TRUE,hideLabels=FALSE)
         for(i in 1:length(warnings)) {
             cat <- spss.CellText.String(as.character(i))
             BasePivotTable.SetCategories(table,rowdim,cat)
