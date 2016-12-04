@@ -38,15 +38,16 @@ Run <- function(args){
                    res$guess)
 
     # Add warnings table
-    table <- spss.BasePivotTable("Warnings ","Warnings")
-    rowdim <- BasePivotTable.Append(table,Dimension.Place.row,"rowdim",
-                                    hideName=TRUE,hideLabels=TRUE)
     warnings <- Warner$getWarnings()
     if(length(warnings != 0)) {
+        table <- spss.BasePivotTable("Warnings ","Warnings")
+        rowdim <- BasePivotTable.Append(table,Dimension.Place.row,"rowdim",
+                                        hideName=TRUE,hideLabels=TRUE)
         for(i in 1:length(warnings)) {
             cat <- spss.CellText.String(as.character(i))
             BasePivotTable.SetCategories(table,rowdim,cat)
-            BasePivotTable.SetCellValue(table,cat,warnings[i])
+            BasePivotTable.SetCellValue(table, cat,
+                                        spss.CellText.String(warnings[i]))
         }
     }
 
