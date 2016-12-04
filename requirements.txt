@@ -1,3 +1,5 @@
+MASS
+survival
 fitdistrplus
 gofstat
 KScorrect
