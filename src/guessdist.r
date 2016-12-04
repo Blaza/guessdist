@@ -43,9 +43,6 @@ process.distro <- function(smp, distro, t.codes) {
     # append this string to result
     result <- c(result, mle.string)
 
-    # append the AIC and BIC values
-    result <- c(result, fit$aic, fit$bic)
-
     # now we run the tests and append p values to result
     p.values <- sapply(t.codes,
                        function(code) {
@@ -101,7 +98,7 @@ fit.data <- function(smp, d.codes, t.codes, plots=FALSE) {
     # we create the vector of column names for the returned vector. We start
     # with known values then add the test names which we get with the
     # get.test.name function from the tests.r  file
-    col.names <- c('Distribution', 'MLEs', 'AIC', 'BIC')
+    col.names <- c('Distribution', 'MLEs')
     test.names <- sapply(t.codes, get.test.name)
     col.names <- c(col.names, test.names)
     colnames(dframe) <- col.names
