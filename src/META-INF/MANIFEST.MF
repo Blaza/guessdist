@@ -1,4 +1,5 @@
 Name: GUESS DIST
+Dialog-Specs: GUESS_DIST.spd
 Command-Specs: GUESS_DIST.xml
 Code-Files: distros.r,GUESS_DIST.R,guessdist.r,tests.r,warn.r
 Summary: Guess the distribution of variable
