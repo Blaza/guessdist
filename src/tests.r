@@ -12,6 +12,24 @@ library(fitdistrplus)
 
 tests <- list(
               list(
+                   name='Akaike information criterion',
+                   code='aic',
+                   distros=c('discrete','continuous'),
+                   warning='',
+                   pval=function(fit){
+                       return(fit$aic)
+                   }
+                  ),
+              list(
+                   name='Bayesian information criterion',
+                   code='bic',
+                   distros=c('discrete','continuous'),
+                   warning='',
+                   pval=function(fit){
+                       return(fit$bic)
+                   }
+                  ),
+              list(
                    name='Chi-squared',
                    code='chisq',
                    distros=c('discrete','continuous'),
