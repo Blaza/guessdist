@@ -81,7 +81,8 @@ process.distro <- function(smp, distro, t.codes) {
 fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     # the filter we use to get distros which were chosen.
     flt <- function(d) {
-        return(d$code %in% d.codes)
+        return(d$code %in% d.codes ||
+               d$type %in% d.codes)
     }
     # get distro objects which correspond to d.codes selected distros
     chosen.distros <- Filter(flt, distros)
