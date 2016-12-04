@@ -110,11 +110,12 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     Warner$warn(mstring(
                 "We make a guess automatically by considering the selected
                  benchmark test. There is value in checking the summary table
-                 and provided plots to alse take a manual guess yourself, as
+                 and provided plots to also take a manual guess yourself, as
                  there might be a simpler or better model than the provided
-                 guess. For example, Gamma distribution can be guessed over
-                 Exponential as it is more general and has more parameters,
-                 when the data actually came from Exponential distribution."))
+                 guess. For example, Gamma distribution can often be guessed
+                 instead of Exponential as it is more general and has more
+                 parameters, when the data actually came from Exponential
+                 distribution."))
 
     # process every chosen distro and get results as a list
     results.list <- lapply(chosen.distros,
