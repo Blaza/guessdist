@@ -32,7 +32,7 @@ Run <- function(args){
                            title="Fitting results table",
                            format=formatSpec.GeneralStat,
                            hiderowdimlabel=TRUE,
-                           hidecoldimlabel=TRUE)
+                           hidecoldimlabel=FALSE)
 
     spss.TextBlock("Distribution guess:",
                    res$guess)
