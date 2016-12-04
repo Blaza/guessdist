@@ -1,5 +1,5 @@
 MASS
 survival
 fitdistrplus
-gofstat
+goftest
 KScorrect
