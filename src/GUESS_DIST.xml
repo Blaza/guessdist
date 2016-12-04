@@ -1,0 +1,11 @@
+<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="GUESS DIST" Language="R" Mode="Source">
+    <Subcommand Name="" IsArbitrary="False" Occurrence="Optional">
+        <Parameter Name="VARIABLE" ParameterType="VariableName"/>
+        <Parameter Name="DISTRIBUTION" ParameterType="KeywordList"/>
+        <Parameter Name="TEST" ParameterType="KeywordList"/>
+        <Parameter Name="CHOOSEBY" ParameterType="Keyword"/>
+    </Subcommand>
+    <Subcommand Name="OPTIONS">
+        <Parameter Name="PLOT" ParameterType="Keyword"/>
+    </Subcommand>
+</Command>
