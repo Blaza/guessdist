@@ -24,5 +24,18 @@ Run <- function(args){
                 spsspkg.Template("PLOT", subc="OPTIONS", ktype="bool", var="plots"),
             ))
 
+    spsspkg.StartProcedure("Guess distribution")
+
     res <- spsspkg.processcmd(oobj,args,"guess.dist")
+
+    spsspivottable.Display(res$table,
+                           title="Fitting results table",
+                           format=formatSpec.GeneralStat,
+                           hiderowdimlabel=TRUE,
+                           hidecoldimlabel=TRUE)
+
+    spss.TextBlock("Distribution guess:",
+                   res$guess)
+
+    spsspkg.EndProcedure()
 }
