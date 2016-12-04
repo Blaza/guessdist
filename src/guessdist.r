@@ -1,10 +1,8 @@
 library(fitdistrplus)
-# we need to change dir to be src so we can source, it's monkey patching but
-# in the end we will merge all scripts
-dir <- dirname(parent.frame(2)$ofile)
-setwd(dir)
-source('distros.r')
-source('tests.r')
+# we need to get source dir so we can source
+script.dir <- dirname(sys.frame(1)$ofile)
+source(paste(script.dir, 'distros.r', sep='/'))
+source(paste(script.dir, 'tests.r', sep='/'))
 
 # function to process one distribution, i.e. generate MLEs afrom the sample smp
 # and run tests from 'tests' which support the current distro. It takes the
