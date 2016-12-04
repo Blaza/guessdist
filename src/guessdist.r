@@ -66,6 +66,8 @@ process.distro <- function(smp, distro, t.codes) {
                                return(NA)
                            }
                        })
+    # round off vaues to 3 decimal places
+    p.values <- round(p.values, digits=3)
     result <- c(result, p.values)
 
     # return the result with nice column names and the fitted fitdist object
