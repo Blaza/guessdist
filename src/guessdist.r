@@ -60,10 +60,10 @@ process.distro <- function(smp, distro, t.codes) {
 }
 
 # The main function which will fit data smp to selected distributions and use
-# selected tests to calculate p values.
+# selected tests to calculate p values. Best is chosen by the crit criterion.
 # Returns a list with a dataframe containing a table with results and a string
 # containing the approximate guess for the best fit distribution.
-fit.data <- function(smp, d.codes, t.codes, plots=FALSE) {
+fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
     # the filter we use to get distros which were chosen.
     flt <- function(d) {
         return(d$code %in% d.codes)
@@ -103,11 +103,21 @@ fit.data <- function(smp, d.codes, t.codes, plots=FALSE) {
     col.names <- c(col.names, test.names)
     colnames(dframe) <- col.names
 
-    guess <- get.distro.name('gamma')
+    # get test object corresponding to criterion crit
+    crit.obj <- get.test(crit)
+    # get the index of the best guess using the crit$best function
+    guess.index <- crit.obj$best(dframe[[crit.obj$name]])
+    # get the row associated with that guess
+    guess.row <- dframe[guess.index, ]
+    # guessed distribution name
+    guess <- toString(guess.row[['Distribution']])
+    # parameters to be displayed in end message, replace newline with ", "
+    params <- gsub('\\n', ', ', guess.row$MLEs)
 
     # we return the dataframe which should be displayed as a final result and
     # the guess concluded by the analysis.
     return(list('table'=dframe,
-                'guess'=paste('Our guess is', guess, 'with parameters:')))
+                'guess'=paste('Our guessed distribution is', guess,
+                              'with parameters:', params)))
 }
 
