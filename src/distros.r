@@ -1,3 +1,4 @@
+library(actuar)
 distros = list(
                list(
                     name='Beta',
@@ -9,7 +10,7 @@ distros = list(
                     name='Binomial',
                     code='binom',
                     params=2,
-                    type='discrete'
+                    type='not supported'
                     ),
                list(
                     name='Cauchy',
@@ -27,7 +28,7 @@ distros = list(
                     name='F distribution',
                     code='f',
                     params=2,
-                    type='continuous'
+                    type='not supported'
                     ),
                list(
                     name='Gamma',
@@ -45,7 +46,7 @@ distros = list(
                     name='Hypergeometric',
                     code='hyper',
                     params=3,
-                    type='discrete'
+                    type='not supported'
 
                     ),
                list(
@@ -76,7 +77,7 @@ distros = list(
                     name='t-distribution',
                     code='t',
                     params=1,
-                    type='continuous'
+                    type='not supported'
                     ),
                list(
                     name='Uniform',
@@ -87,6 +88,12 @@ distros = list(
                list(
                     name='Weibull',
                     code='weibull',
+                    params=2,
+                    type='continuous'
+                    ),
+               list(
+                    name='Pareto',
+                    code='pareto',
                     params=2,
                     type='continuous'
                     )
