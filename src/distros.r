@@ -1,4 +1,4 @@
-library(actuar)
+#library(actuar)
 distros = list(
                list(
                     name='Beta',
@@ -95,7 +95,7 @@ distros = list(
                     name='Pareto',
                     code='pareto',
                     params=2,
-                    type='continuous'
+                    type='not supported'
                     )
                )
 
