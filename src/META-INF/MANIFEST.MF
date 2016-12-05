@@ -8,4 +8,4 @@ Author: Blagoje Ivanovic
 Version: 0.8.216
 Product-Version: 21
 Plugins: R
-R-Packages: MASS,survival,fitdistrplus,KScorrect,goftest
+R-Packages: MASS,survival,fitdistrplus,KScorrect,actuar,goftest
