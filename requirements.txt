@@ -3,3 +3,4 @@ survival
 fitdistrplus
 goftest
 KScorrect
+actuar
