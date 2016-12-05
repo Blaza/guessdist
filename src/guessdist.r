@@ -128,7 +128,7 @@ fit.data <- function(smp, d.codes, t.codes, crit, plots=FALSE) {
         for(res in results.list){
             if(!is.null(res$fitobj)) {
                 par(mar=c(5.1,4.1,8.1,2.1))
-                plot(res$fitobj, ask=FALSE)
+                plot(res$fitobj)
                 title(res$result[1], outer=TRUE, line=-2)
             }
         }
